@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Manrope, DM_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-
+import ReactQueryProvider from "@/react-query";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme";
 
@@ -27,7 +26,7 @@ export default function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            {children}
+            <ReactQueryProvider>{children}</ReactQueryProvider>{" "}
           </ThemeProvider>
         </body>
       </html>
