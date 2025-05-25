@@ -26,6 +26,7 @@ import WorkspacePlaceholder from "./workspace-placeholder";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import GlobalCard from "../global-card";
+import InfoBar from "../info-bar";
 
 type Props = {
   activeWorkspaceId: string;
@@ -194,7 +195,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
   );
   return (
     <div className="full ">
-      {/* <InfoBar /> */}
+      <InfoBar />
       <div className="md:hidden fixed my-4">
         <Sheet>
           <SheetTrigger asChild className="ml-2">
