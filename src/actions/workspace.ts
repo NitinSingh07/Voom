@@ -2,6 +2,7 @@
 import { client } from "@/lib/prisma";
 
 import { currentUser } from "@clerk/nextjs/server";
+import { stat } from "fs";
 
 export const verifyAccessToWorkspace = async (workspaceId: string) => {
   try {
@@ -218,5 +219,26 @@ export const renameFolders = async (folderId: string, name: string) => {
   } catch (error) {
     console.error("Error renaming folder:", error);
     return { status: 500, data: "Failed to rename folder" };
+  }
+};
+
+export const createFolder = async (workspaceId: string) => {
+  try {
+    const isNewFolder = await client.workSpace.update({
+      where: {
+        id: workspaceId,
+      },
+      data: {
+        folders: {
+          create: { name: "Untitled" },
+        },
+      },
+    });
+    if (isNewFolder) {
+      return { status: 200, message: "New Folder Created" };
+    }
+  } catch (error) {
+    console.error("Error creating folder:", error);
+    return { status: 500, message: "Opps! something went wrong" };
   }
 };
